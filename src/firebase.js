@@ -1,6 +1,6 @@
-@import { firebase } from 'firebase';
+import firebase from 'firebase';
 
-// Initialize Firebase
+// Config Object
 const config = {
  apiKey: "AIzaSyADRI2gO6THs15NqkpPmE-ADSMyHkKPOVU",
  authDomain: "based-gawd.firebaseapp.com",
@@ -10,5 +10,7 @@ const config = {
  messagingSenderId: "419960215023"
 };
 
+// Initialize Firebase
 firebase.initializeApp(config);
+
 export default firebase;
