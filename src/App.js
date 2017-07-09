@@ -69,9 +69,10 @@ class App extends Component {
                               <li key={item.id}>
                                  <h3>{item.title}</h3>
                                  <p>brought by: {item.user}</p>
+                                 <button onClick={ () => this.removeItem(item.id) }>Remove</button>
                               </li>
                            )
-                        })}                     
+                        })}
                      </ul>
                   </div>
                </section>
@@ -81,8 +82,6 @@ class App extends Component {
    }
 
    handleChange(e) {
-      console.log(e);
-      console.log(`target name: ${ e.target.name } value: ${ e.target.value }`);
       this.setState({
          [e.target.name]: e.target.value
       });
@@ -96,14 +95,15 @@ class App extends Component {
          user: this.state.userName
       };
       itemsRef.push(item);
-      this.resetState();
-   }
-
-   resetState() {
       this.setState({
          currentItem: '',
          userName: ''
       });
+   }
+
+   removeItem(itemId) {
+      const itemRef = firebase.database().ref(`items/${ itemId }`);
+      itemRef.remove();
    }
 }
 
